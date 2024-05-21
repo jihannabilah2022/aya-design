@@ -54,6 +54,10 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 // Rute untuk halaman utama dan informasi
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/aboutUs', [AboutUsController::class, 'index'])->name('about_us');
+Route::get('/faq', [AboutUsController::class, 'faq'])->name('faq');
+Route::get('/how_to_order', [AboutUsController::class, 'how_to_order'])->name('how_to_order');
+
+
 
 // Rute untuk berbelanja dan pesanan
 Route::get('/go-shopping', [ShopController::class, 'index'])->name('go_shopping');
@@ -72,25 +76,25 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Route::middleware(['auth:sanctum, admin',
-//     config('jetstream.auth_session'),
-//     'verified',
-//     \App\Http\Middleware\RedirectIfAuthenticated::class, // Tambahkan middleware RedirectIfAuthenticated di sini
-// ])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('server.home');
-//     })->name('dashboard');
-// });
+Route::middleware(['auth:sanctum, admin',
+    config('jetstream.auth_session'),
+    'verified',
+    \App\Http\Middleware\RedirectIfAuthenticated::class, // Tambahkan middleware RedirectIfAuthenticated di sini
+])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('server.home');
+    })->name('dashboard');
+});
 
-// Route::middleware(['auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-//     \App\Http\Middleware\RedirectIfAuthenticated::class, // Tambahkan middleware RedirectIfAuthenticated di sini
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('user.dashboard');
-//     })->name('dashboard');
-// });
+Route::middleware(['auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    \App\Http\Middleware\RedirectIfAuthenticated::class, // Tambahkan middleware RedirectIfAuthenticated di sini
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('user.dashboard');
+    })->name('dashboard');
+});
 
 
 Route::prefix('admin')->group(function () {
