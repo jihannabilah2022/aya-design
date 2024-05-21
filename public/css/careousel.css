@@ -1,0 +1,13 @@
+.carousel-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .carousel {
+    max-width: 800px; /* Adjust maximum width as needed */
+    width: 100%;
+  }
+
+  .carousel-caption {
+    text-align: center;
+  }
