@@ -6,18 +6,18 @@
         @if(Auth::check())
             @if(Auth::user()->usertype === 'admin')
                 <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('home') }}">Dashboard</a>
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('admin.users.index') }}">Manajemen Pengguna</a>
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('transaksi.index') }}">Manajemen Transaksi</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('home') }}">Dashboard</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('admin.users.index') }}">Manajemen Pengguna</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('transaksi.index') }}">Manajemen Transaksi</a>
                     @if($dashboard)
                         @include('dashboard')
                     @endif
                 </nav>
             @else
                 <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('home') }}">Home</a>
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('about_us') }}">About Us</a>
-                    <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('go_shopping') }}">Go Shopping</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('home') }}">Home</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('about_us') }}">About Us</a>
+                    <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('go_shopping') }}">Go Shopping</a>
                     <a href="{{ route('cart') }}">
                     <button type="submit"
                         class="font-sans block mt-4 lg:inline-block lg:mt-0 lg:ml-6 align-middle text-black hover:text-gray-700 relative flex items-center">
@@ -38,9 +38,9 @@
             @endif
         @else
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('home') }}">Home</a>
-                <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('about_us') }}">About Us</a>
-                <a class="mr-5 hover:text-gray-900 text-lg" href="{{ route('go_shopping') }}">Go Shopping</a>
+                <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('home') }}">Home</a>
+                <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('about_us') }}">About Us</a>
+                <a class="mr-5 hover:text-gray-900 text-xl" href="{{ route('go_shopping') }}">Go Shopping</a>
                 <a href="{{ route('cart') }}">
                     <button type="submit"
                         class="font-sans block mt-4 lg:inline-block lg:mt-0 lg:ml-6 align-middle text-black hover:text-gray-700 relative flex items-center">

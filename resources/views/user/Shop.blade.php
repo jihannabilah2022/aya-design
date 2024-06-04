@@ -3,6 +3,8 @@
 @section('konten')
  <!-- PhotoCard -->
  <section class="text-gray-600 body-font mt-20" style="margin-bottom: 250px;">
+ <h1 class="text-center judul text-xl mb-10">Photocard</h1>
+
     <div class="container px-5 py-8 mx-auto carousel-container">
       <div class="owl-carousel owl-theme carousel3 carousel-3-items">
         <div class="item">
@@ -72,6 +74,8 @@
 
  <!-- Banner -->
   <section class="text-gray-600 body-font mt-20" style="margin-bottom: 250px;">
+  <h1 class="text-center judul text-xl mb-10">Banner</h1>
+
     <div class="container px-5 py-8 mx-auto carousel-container">
       <div class="owl-carousel owl-theme carousel4 carousel-4-items">
         <div class="item">
@@ -81,7 +85,7 @@
                 <img alt="content" class="object-cover object-center h-auto w-auto" src="image\banner\banner1.png">
               </div>
               <div class="carousel-caption">
-                <h2 class="text-xl font-medium title-font text-gray-900">B&W Photocard</h2>
+                <h2 class="text-xl font-medium title-font text-gray-900">B&W Banner</h2>
                 <p class="text-base leading-relaxed mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, iure.</p>
                 <h2 class="text-xl font-medium title-font text-gray-900 mt-2">Rp. 35.000</h2>
               </div>
@@ -96,7 +100,7 @@
                 <img alt="content" class="object-cover object-center h-auto w-auto" src="image\banner\banner2.png">
               </div>
               <div class="carousel-caption">
-                <h2 class="text-xl font-medium title-font text-gray-900">B&W Photocard</h2>
+                <h2 class="text-xl font-medium title-font text-gray-900">B&W Banner</h2>
                 <p class="text-base leading-relaxed mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, iure.</p>
                 <h2 class="text-xl font-medium title-font text-gray-900 mt-2">Rp. 35.000</h2>
               </div>
@@ -111,7 +115,7 @@
                 <img alt="content" class="object-cover object-center h-auto w-auto" src="image\banner\banner3.png">
               </div>
               <div class="carousel-caption">
-                <h2 class="text-xl font-medium title-font text-gray-900">B&W Photocard</h2>
+                <h2 class="text-xl font-medium title-font text-gray-900">B&W Banner</h2>
                 <p class="text-base leading-relaxed mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, iure.</p>
                 <h2 class="text-xl font-medium title-font text-gray-900 mt-2">Rp. 35.000</h2>
               </div>
@@ -126,7 +130,7 @@
                 <img alt="content" class="object-cover object-center h-auto w-auto" src="image\banner\banner4.png">
               </div>
               <div class="carousel-caption">
-                <h2 class="text-xl font-medium title-font text-gray-900">B&W Photocard</h2>
+                <h2 class="text-xl font-medium title-font text-gray-900">B&W Banner</h2>
                 <p class="text-base leading-relaxed mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, iure.</p>
                 <h2 class="text-xl font-medium title-font text-gray-900 mt-2">Rp. 35.000</h2>
               </div>
@@ -140,7 +144,7 @@
                 <img alt="content" class="object-cover object-center h-auto w-auto" src="image\banner\banner3.png">
               </div>
               <div class="carousel-caption">
-                <h2 class="text-xl font-medium title-font text-gray-900">B&W Photocard</h2>
+                <h2 class="text-xl font-medium title-font text-gray-900">B&W Banner</h2>
                 <p class="text-base leading-relaxed mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, iure.</p>
                 <h2 class="text-xl font-medium title-font text-gray-900 mt-2">Rp. 35.000</h2>
               </div>

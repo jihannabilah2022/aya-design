@@ -13,9 +13,16 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'custom-pink': '#BA6264', // Menambahkan warna kustom
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                qaligo: ['Qaligo', 'sans-serif'], // Menambahkan font Qaligo
             },
+            borderRadius: {
+                'xl': '1rem', // Tambahkan border-radius yang lebih besar
+            }
         },
     },
 

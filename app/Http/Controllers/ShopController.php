@@ -186,7 +186,7 @@ class ShopController extends Controller
 
     protected function sendWhatsAppMessage($namaPengguna, $cartItems, $totalHarga, $adminPhoneNumber)
     {
-        $pesan = "Hai Admin *{$namaPengguna}* ingin melakukan pemesanan,\nBerikut pesanan Saya:\n\n"; // Pesan awal
+        $pesan = "Hai Admin, saya *{$namaPengguna}* ingin melakukan pemesanan,\nBerikut pesanan Saya:\n\n"; // Pesan awal
 
         // Iterasi melalui setiap item dalam $cartItems
         foreach ($cartItems as $index => $item) {
@@ -237,9 +237,4 @@ class ShopController extends Controller
         // Mengembalikan tautan WhatsApp
         return $whatsappLink;
     }
-
-
-
-
-
 }

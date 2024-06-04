@@ -1,24 +1,32 @@
-<!-- resources/views/admin/users/edit.blade.php -->
-
-@extends('layouts.homelayouts')
+@extends('layouts.homelayouts2')
 
 @section('konten')
-    <div class="container mx-auto mt-8">
-        <h2 class="text-2xl font-bold mb-4">Edit User</h2>
-        <form action="{{ route('admin.users.update', $user->id) }}" method="POST" class="max-w-md mx-auto">
+<div class="max-w-3xl mx-auto p-4 py-12">
+    <h1 class="text-xl font-bold mb-4 text-custom-pink judul text-center">Edit User</h1>
+
+    <!-- Back Button -->
+    <div class="mb-4">
+        <a href="{{ route('admin.users.index') }}" class="bg-custom-pink hover:bg-custom-pink-600 text-white font-bold py-2 px-4 rounded">
+            Kembali
+        </a>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md border border-custom-pink-200 mb-6">
+        <form action="{{ route('admin.users.update', $user->id) }}" method="POST" class="mb-4">
             @csrf
             @method('PUT')
             <div class="mb-4">
                 <label for="name" class="block text-gray-700">Name:</label>
-                <input type="text" name="name" class="form-input mt-1 block w-full rounded-md border-pink-300" value="{{ $user->name }}" required>
+                <input type="text" name="name" class="form-input mt-1 block w-full rounded-md border-custom-pink-300" value="{{ $user->name }}" required>
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700">Email:</label>
-                <input type="email" name="email" class="form-input mt-1 block w-full rounded-md border-pink-300" value="{{ $user->email }}" required>
+                <input type="email" name="email" class="form-input mt-1 block w-full rounded-md border-custom-pink-300" value="{{ $user->email }}" required>
             </div>
             <!-- tambahkan bidang lain sesuai kebutuhan -->
-            <button type="submit" class="bg-pink-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-pink-600 focus:outline-none focus:bg-pink-600">Submit</button>
-            <a href="{{ route('admin.users.index') }}" class="bg-pink-300 text-pink-700 font-semibold py-2 px-4 rounded-md ml-4 hover:bg-pink-400 focus:outline-none focus:bg-pink-400">Back</a>
+            <button type="submit" class="bg-custom-pink hover:bg-custom-pink-600 text-white font-bold py-2 px-4 rounded">Submit</button>
+            
         </form>
     </div>
+</div>
 @endsection
