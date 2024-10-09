@@ -30,21 +30,18 @@ WORKDIR /var/www/html
 # Menyalin file dari direktori lokal ke container
 COPY . /var/www/html
 
-# Menyalin file .env.example ke .env
+# Menyalin file .env.example ke .env jika .env tidak ada
 RUN cp .env.example .env
 
-# Mengatur hak akses folder
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Mengatur hak akses folder storage dan bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Menginstall dependensi Composer
 RUN composer install --no-dev --optimize-autoloader
 
 # Generate Laravel Application Key
 RUN php artisan key:generate
-
-# Menjalankan migrasi database
-RUN php artisan migrate --force
 
 # Expose port 80 untuk web server
 EXPOSE 80
