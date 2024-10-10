@@ -33,7 +33,11 @@ COPY . /var/www/html
 # Menyalin file .env.example ke .env jika .env tidak ada
 RUN cp .env.example .env
 
-# Mengatur hak akses folder storage dan bootstrap/cache
+# Mengatur hak akses seluruh folder project
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Mengatur hak akses folder storage dan bootstrap/cache secara khusus
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
