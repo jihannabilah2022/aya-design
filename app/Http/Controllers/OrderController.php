@@ -1,68 +1,44 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Improt Auth
+use App\Models\Transaksi;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class HomeController extends Controller
 {
-    // Menampilkan formulir untuk membuat pesanan baru
-    public function create()
+    public function index()
     {
-        return view('user.pesan');
-    }
+        if (Auth::check()) {
+            $userType = Auth::user()->usertype;
+            
+            // Lakukan pengecekan tipe pengguna
+            if ($userType === 'user') {
+                // For user type, we may not need these variables, so let's set them as null
+                $totalTransactions = null;
+                $totalUsers = null;
+                $totalAmount = null;
 
-    // Menyimpan pesanan baru beserta detail pemesanannya
-    public function store(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required|string',
-            // tambahkan validasi sesuai kebutuhan
-        ]);
+                return view('user.homepage', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => true]);
+            } elseif ($userType === 'admin') {
+                // For admin type, calculate the required variables
+                $totalTransactions = Transaksi::count();
+                $totalUsers = User::count();
+                $totalAmount = Transaksi::sum('total_harga');
 
-        // Membuat order baru
-        $order = new Order();
-        $order->judul = $request->judul;
+                return view('admin.home', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => true]);
+            } else {
+                // Tipe pengguna tidak dikenali, mungkin ada kesalahan dalam pengaturan
+                // Anda dapat menangani kasus ini sesuai dengan kebutuhan aplikasi Anda
+                // Misalnya, mengarahkan ke halaman error atau melakukan tindakan lainnya
+            }
+        } else {
+            // For non-authenticated users, we may not need these variables, so let's set them as null
+            $totalTransactions = null;
+            $totalUsers = null;
+            $totalAmount = null;
 
-        // Mengambil URL gambar dari input tersembunyi
-        $order->img = $request->img;
-        $order->harga = $request->harga;
-
-
-        // Inisialisasi array untuk nama dan deskripsi
-        $namaArray = [];
-        $deskripsiArray = [];
-
-        // Looping untuk mengambil data dari form
-        $i = 1;
-        while ($request->has("nama$i")) {
-            $namaArray[] = $request->input("nama$i");
-            $deskripsiArray[] = $request->input("deskripsi$i");
-            $i++;
+            return view('user.homepage', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => false]);
         }
-
-        // Menggabungkan array nama dan deskripsi menjadi satu string dengan koma sebagai pemisah
-        $order->nama = implode(', ', $namaArray);
-        $order->deskripsi = implode(', ', $deskripsiArray);
-        $order->user_id = Auth::id();
-
-        $order->save();
-
-        return redirect()->route('go_shopping')->with('success', 'Pesanan berhasil disimpan.');
     }
-    // public function showCart()
-    // {
-    //     // Ambil pesanan yang terkait dengan pengguna yang login saat ini
-    //     $user = Auth::user();
-    //     $orders = $user->orders;
-
-    //     // Kirim data pesanan ke view
-    //     return view('user.cart', ['orders' => $orders]);
-    // }
-
-
-
 }
-
