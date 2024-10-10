@@ -1,59 +1,44 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Transaksi;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class TransaksiController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
-        if(auth()->check()) {
-            // Jika pengguna sudah login, tampilkan daftar transaksi
-            $transaksis = Transaksi::all();
-            return view('admin.transaksi.index', compact('transaksis'))->with(['dashboard' => true]);
-        } else {
-            // Jika pengguna belum login, arahkan ke halaman beranda biasa
-            return redirect()->route('home')->with('error', 'You are not authorized to view this page.');
-        }
-    }
+        if (Auth::check()) {
+            $userType = Auth::user()->usertype;
+            
+            // Lakukan pengecekan tipe pengguna
+            if ($userType === 'user') {
+                // For user type, we may not need these variables, so let's set them as null
+                $totalTransactions = null;
+                $totalUsers = null;
+                $totalAmount = null;
 
-    public function show($id)
-    {
-        if(auth()->check()) {
-            // Jika pengguna sudah login, tampilkan detail transaksi
-            $transaksi = Transaksi::with('items')->findOrFail($id);
-            return view('admin.transaksi.show', compact('transaksi'))->with(['dashboard' => true]);
-        } else {
-            // Jika pengguna belum login, arahkan ke halaman beranda biasa
-            return redirect()->route('home')->with('error', 'You are not authorized to view this page.');
-        }
-    }
+                return view('user.homepage', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => true]);
+            } elseif ($userType === 'admin') {
+                // For admin type, calculate the required variables
+                $totalTransactions = Transaksi::count();
+                $totalUsers = User::count();
+                $totalAmount = Transaksi::sum('total_harga');
 
-    public function update(Request $request, $id)
-    {
-        if(auth()->check()) {
-            // Jika pengguna sudah login, update transaksi
-            $transaksi = Transaksi::findOrFail($id);
-            $transaksi->update($request->all());
-            return redirect()->route('transaksi.index')->with('success', 'Transaksi updated successfully')->with(['dashboard' => true]);
+                return view('admin.home', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => true]);
+            } else {
+                // Tipe pengguna tidak dikenali, mungkin ada kesalahan dalam pengaturan
+                // Anda dapat menangani kasus ini sesuai dengan kebutuhan aplikasi Anda
+                // Misalnya, mengarahkan ke halaman error atau melakukan tindakan lainnya
+            }
         } else {
-            // Jika pengguna belum login, arahkan ke halaman beranda biasa
-            return redirect()->route('home')->with('error', 'You are not authorized to perform this action.');
-        }
-    }
+            // For non-authenticated users, we may not need these variables, so let's set them as null
+            $totalTransactions = null;
+            $totalUsers = null;
+            $totalAmount = null;
 
-    public function destroy($id)
-    {
-        if(auth()->check()) {
-            // Jika pengguna sudah login, hapus transaksi
-            $transaksi = Transaksi::findOrFail($id);
-            $transaksi->delete();
-            return redirect()->route('transaksi.index')->with('success', 'Transaksi deleted successfully')->with(['dashboard' => true]);
-        } else {
-            // Jika pengguna belum login, arahkan ke halaman beranda biasa
-            return redirect()->route('home')->with('error', 'You are not authorized to perform this action.');
+            return view('user.homepage', compact('totalTransactions', 'totalUsers', 'totalAmount'))->with(['dashboard' => false]);
         }
     }
 }
