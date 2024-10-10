@@ -73,6 +73,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
+        file: Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/aya_design_jihan_rawr:latest
 
